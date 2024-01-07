@@ -37,7 +37,9 @@ set_property(TARGET Editor PROPERTY VS_DOTNET_REFERENCES
 	"System.Xaml"
 	"System.Xml"
 	"System.Xml.Linq"
-	"WindowsBase")
+	"System.Windows.Forms"
+	"WindowsBase"
+	"WindowsFormsIntegration")
 
 target_link_libraries(Editor PRIVATE EditorWrapper)
 add_custom_command(TARGET Editor POST_BUILD

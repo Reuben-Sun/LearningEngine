@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         xmlns:local="clr-namespace:ToolEditor"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
@@ -10,8 +11,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="20" />
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Content="{Binding Path=TestLabel}" Grid.Row="0"/>
         <Button Content="click" Grid.Row="1" Click="Button_Click"/>
+        <WindowsFormsHost Name="host" Grid.Row="2"/>
     </Grid>
 </Window>
