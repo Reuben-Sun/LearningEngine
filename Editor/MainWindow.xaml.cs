@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using EditorWrapperModule;
 
 namespace ToolEditor
 {
@@ -39,8 +40,9 @@ namespace ToolEditor
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            EditorEngine engine = new EditorEngine();
             // EngineRenderModule engineRenderModule = new EngineRenderModule();
-            // TestLabel = engineRenderModule.getX().ToString();
+            TestLabel = engine.getX().ToString();
         }
     }
 }

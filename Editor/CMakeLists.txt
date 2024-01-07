@@ -39,10 +39,9 @@ set_property(TARGET Editor PROPERTY VS_DOTNET_REFERENCES
 	"System.Xml.Linq"
 	"WindowsBase")
 
-#add_dependencies(Editor Wrapper)
-#target_link_libraries(Editor PRIVATE Wrapper)
-#add_custom_command(TARGET Editor POST_BUILD
-#    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-#    $<TARGET_FILE:Engine>
-#    $<TARGET_FILE_DIR:Editor>
-#)
+target_link_libraries(Editor PRIVATE EditorWrapper)
+add_custom_command(TARGET Editor POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy_if_different
+	$<TARGET_FILE:EditorWrapperModule>
+	$<TARGET_FILE_DIR:Editor>
+)
