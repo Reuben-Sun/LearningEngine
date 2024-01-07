@@ -2,3 +2,5 @@
 build/
 
 Engine/engine_wrap.cpp
+
+EditorWrapper/Source/

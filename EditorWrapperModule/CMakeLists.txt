@@ -16,5 +16,5 @@ STRING(REPLACE "/" "\\" REPLACED ${WRAPPER_SOURCE_DIR})
 add_custom_command(TARGET ${PROJECT_NAME} 
     COMMAND ${CMAKE_COMMAND} -E make_directory ${WRAPPER_SOURCE_DIR}
     COMMAND del /f /s /q ${REPLACED}\\*.cs
-    COMMAND ${SWIG_EXE_PATH} -c++ -outdir ${WRAPPER_SOURCE_DIR} -namespace EditorWrapperModule -csharp -cpperraswarn -DFORCEINLINE=inline -dllimport EditorWrapper -debug-classes -o ${CMAKE_CURRENT_SOURCE_DIR}/EngineWrapperFile.cpp ${CMAKE_CURRENT_SOURCE_DIR}/interface.i
+    COMMAND ${SWIG_EXE_PATH} -c++ -outdir ${WRAPPER_SOURCE_DIR} -namespace EditorWrapperModule -csharp -cpperraswarn -DFORCEINLINE=inline -dllimport editorwrappermodule -debug-classes -o ${CMAKE_CURRENT_SOURCE_DIR}/EngineWrapperFile.cpp ${CMAKE_CURRENT_SOURCE_DIR}/interface.i
     COMMAND echo [*******swig.exe_Done*******])
