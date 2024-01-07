@@ -8,6 +8,9 @@ file(GLOB_RECURSE HEADERS "*.h")
 set(ALL_FILES ${HEADERS} ${SOURCES})
 add_library(EditorWrapperModule SHARED ${ALL_FILES})
 
+#target_include_directories(EditorWrapperModule PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(EditorWrapperModule PRIVATE Engine)
+
 # swig generate
 set(SWIG_EXE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../ThirdParty/swigwin-4.2.0/swig.exe")
 set(SWIG_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../ThirdParty/swigwin-4.2.0/Lib")

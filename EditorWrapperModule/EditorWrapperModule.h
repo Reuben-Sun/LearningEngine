@@ -1,4 +1,5 @@
 #pragma once
+#include "Engine.h"
 
 namespace EditorWrapperModule
 {
@@ -7,7 +8,8 @@ namespace EditorWrapperModule
     public:
         EditorEngine() 
         {
-            
+            Engine::Engine engine;
+            x = engine.getTest();
         };
         ~EditorEngine() {};
 
