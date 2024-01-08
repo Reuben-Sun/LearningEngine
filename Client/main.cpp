@@ -1,7 +1,8 @@
 #include <iostream>
+#include <Windows.h>
 #include "Engine.h"
 
-int main()
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int nCmdShow)
 {
     Engine::Engine engine;
     int x = engine.getTest();
