@@ -8,8 +8,8 @@ namespace EditorWrapperModule
     public:
         EditorEngine() 
         {
-            Engine::Engine engine;
-            x = engine.getTest();
+            /*Engine::Engine engine;
+            x = engine.getTest();*/
         };
         ~EditorEngine() {};
 
