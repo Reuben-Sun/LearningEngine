@@ -2,13 +2,12 @@
 
 namespace Engine
 {
-	HWND Win32Application::m_hwnd = nullptr;
-
-	int Win32Application::run(DXWindow* pWindow, HINSTANCE hInstance, int nCmdShow)
+	Application::Application(DXWindow* pWindow, HINSTANCE hInstance, int nCmdShow)
+		: m_window(pWindow)
 	{
 		int argc;
 		LPWSTR* argv = CommandLineToArgvW(GetCommandLineW(), &argc);
-		pWindow->parseCommandLineArgs(argv, argc);
+		m_window->parseCommandLineArgs(argv, argc);
 		LocalFree(argv);
 
 		WNDCLASSEXW windowClass = { 0 };
@@ -20,12 +19,12 @@ namespace Engine
 		windowClass.lpszClassName = L"DXWindowClass";
 		RegisterClassExW(&windowClass);
 
-		RECT windowRect = { 0, 0, static_cast<LONG>(pWindow->getWidth()), static_cast<LONG>(pWindow->getHeight()) };
+		RECT windowRect = { 0, 0, static_cast<LONG>(m_window->getWidth()), static_cast<LONG>(m_window->getHeight()) };
 		AdjustWindowRect(&windowRect, WS_OVERLAPPEDWINDOW, FALSE);
 
 		m_hwnd = CreateWindowW(
 			windowClass.lpszClassName,
-			pWindow->getTitle(),
+			m_window->getTitle(),
 			WS_OVERLAPPEDWINDOW,
 			CW_USEDEFAULT,
 			CW_USEDEFAULT,
@@ -34,27 +33,29 @@ namespace Engine
 			nullptr,        // We have no parent window.
 			nullptr,        // We aren't using menus.
 			hInstance,
-			pWindow);
+			m_window);
 
-		pWindow->onInit();
+		m_window->onInit();
 
 		ShowWindow(m_hwnd, nCmdShow);
-		MSG msg = {};
-		while (msg.message != WM_QUIT)
-		{
-			// Process any messages in the queue.
-			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-			{
-				TranslateMessage(&msg);
-				DispatchMessage(&msg);
-			}
-		}
-
-		pWindow->onDestroy();
-
-		return static_cast<char>(msg.wParam);
 	}
-	LRESULT Win32Application::windowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+	Application::~Application()
+	{
+		m_window->onDestroy();
+	}
+	void Application::onUpdate()
+	{
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		{
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+	}
+	bool Application::needUpdate()
+	{
+		return msg.message != WM_QUIT;
+	}
+	LRESULT Application::windowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		DXWindow* pWindow = reinterpret_cast<DXWindow*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
 

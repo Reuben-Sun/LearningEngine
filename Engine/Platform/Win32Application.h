@@ -4,13 +4,17 @@
 
 namespace Engine
 {
-	class Win32Application
+	class Application
 	{
 	public:
-		static int run(DXWindow* pWindow, HINSTANCE hInstance, int nCmdShow);
-		static HWND getHwnd() { return m_hwnd; }
+		Application(DXWindow* pWindow, HINSTANCE hInstance, int nCmdShow);
+		~Application();
+		void onUpdate();
+		bool needUpdate();
 	private:
-		static HWND m_hwnd;
+		DXWindow* m_window{ nullptr };
+		HWND m_hwnd;
+		MSG msg = {};
 		static LRESULT CALLBACK windowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	};
 }
