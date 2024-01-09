@@ -1,6 +1,6 @@
 #include "Marco.h"
-import Render;
-import DXWindow;
+#include "Render/Render.h"
+#include "Platform/DXWindow.h"
 
 using Microsoft::WRL::ComPtr;
 
@@ -10,10 +10,10 @@ namespace Engine
 	{
 	public:
 		Engine(uint32_t width, uint32_t height, std::wstring name);
-		override void onInit();
-		override void onUpdate();
-		override void onRender();
-		override void onDestroy();
+		void onInit() override;
+		void onUpdate() override;
+		void onRender() override;
+		void onDestroy() override;
 	private:
 		static const uint32_t FrameCount = 2;
 

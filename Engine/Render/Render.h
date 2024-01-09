@@ -1,8 +1,8 @@
-export module Render;
+#pragma once
 
 namespace Engine
 {
-	export class Render
+	class Render
 	{
 	public:
 		int getTest() {
