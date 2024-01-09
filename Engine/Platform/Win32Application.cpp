@@ -11,21 +11,21 @@ namespace Engine
 		pWindow->parseCommandLineArgs(argv, argc);
 		LocalFree(argv);
 
-		WNDCLASSEX windowClass = { 0 };
-		windowClass.cbSize = sizeof(WNDCLASSEX);
+		WNDCLASSEXW windowClass = { 0 };
+		windowClass.cbSize = sizeof(WNDCLASSEXW);
 		windowClass.style = CS_HREDRAW | CS_VREDRAW;
 		windowClass.lpfnWndProc = windowProc;
 		windowClass.hInstance = hInstance;
 		windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
-		windowClass.lpszClassName = reinterpret_cast<LPCSTR>(L"DXWindowClass");
-		RegisterClassEx(&windowClass);
+		windowClass.lpszClassName = L"DXWindowClass";
+		RegisterClassExW(&windowClass);
 
 		RECT windowRect = { 0, 0, static_cast<LONG>(pWindow->getWidth()), static_cast<LONG>(pWindow->getHeight()) };
 		AdjustWindowRect(&windowRect, WS_OVERLAPPEDWINDOW, FALSE);
 
-		m_hwnd = CreateWindow(
+		m_hwnd = CreateWindowW(
 			windowClass.lpszClassName,
-			reinterpret_cast<LPCSTR>(pWindow->getTitle()),
+			pWindow->getTitle(),
 			WS_OVERLAPPEDWINDOW,
 			CW_USEDEFAULT,
 			CW_USEDEFAULT,
@@ -96,6 +96,6 @@ namespace Engine
 		}
 
 		// Handle any messages the switch statement didn't.
-		return DefWindowProc(hWnd, message, wParam, lParam);
+		return DefWindowProcW(hWnd, message, wParam, lParam);
 	}
 }
