@@ -6,3 +6,5 @@ Engine/engine_wrap.cpp
 EditorWrapper/Source/
 
 .vscode/
+
+EditorWrapperModule/EngineWrapperFile.cpp
