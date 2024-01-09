@@ -1,4 +1,3 @@
-// TODO: DXSample
 #pragma once
 #include "Marco.h"
 
