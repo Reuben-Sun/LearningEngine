@@ -4,9 +4,8 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int nCmdShow)
 {
-    Engine::Engine engine;
-    int x = engine.getTest();
+    Engine::Engine engine = Engine::Engine(800, 600, L"Engine");
+    
     std::cout << "Hello, World!" << std::endl;
-    std::cout << "x = " << x << std::endl;
     return 0;
 }

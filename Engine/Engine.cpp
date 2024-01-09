@@ -6,6 +6,17 @@ namespace Engine
 		: DXWindow(width, height, name)
 	{
 	}
-	
+	void Engine::onInit()
+	{
+	}
+	void Engine::onUpdate()
+	{
+	}
+	void Engine::onRender()
+	{
+	}
+	void Engine::onDestroy()
+	{
+	}
 }
 
